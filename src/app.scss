@@ -1,0 +1,141 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  position: relative;
+}
+
+.main {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}
+
+button {
+  background-color: transparent;
+  color: #4f4f4f;
+  font-family: Raleway;
+  font-size: 18px;
+  font-weight: 500;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  border: none;
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-image: linear-gradient(#0000001a 0 0);
+  }
+}
+
+.random-content {
+  width: 60%;
+  margin: 280px auto 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  flex: 1;
+
+  .author-container {
+    padding: 50px 28px;
+    margin: 0px 70px 100px;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: center;
+
+      .author {
+        font-family: Raleway;
+        font-size: 24px;
+        font-weight: 700;
+        color: #4f4f4f;
+      }
+
+      .tags {
+        font-family: Raleway;
+        font-size: 14px;
+        font-weight: 500;
+        color: #828282;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+      }
+    }
+
+    span {
+      color: transparent;
+      display: flex;
+      justify-content: center;
+      font-size: 48px;
+      cursor: pointer;
+    }
+
+    &:hover,
+    &:focus {
+      color: #f2f2f2;
+      background-color: #333333;
+
+      .genre {
+        color: #828282;
+        margin-right: 8px;
+      }
+
+      span {
+        color: #f2f2f2;
+      }
+    }
+  }
+}
+
+.author-content {
+  width: 60%;
+  margin: 40px auto 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 140px;
+  flex: 1;
+
+  .title {
+    color: #333333;
+    margin: 100px 100px 0px;
+    font-family: Raleway;
+    font-size: 36px;
+    font-weight: 700;
+  }
+}
+
+.quote {
+  font-family: Raleway;
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.footer {
+  font-family: Montserrat;
+  font-size: 14px;
+  font-weight: 500;
+  color: #828282;
+  text-align: center;
+  margin-bottom: 24px;
+
+  span {
+    font-weight: 700;
+  }
+}
