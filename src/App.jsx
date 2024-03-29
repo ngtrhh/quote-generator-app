@@ -1,62 +1,56 @@
 import { useEffect, useState } from "react";
 
 function App() {
-  const [loading, setLoading] = useState(true);
   const [quote, setQuote] = useState({});
   const [quotes, setQuotes] = useState([]);
   const [route, setRoute] = useState("random");
 
   useEffect(() => {
-    if (loading) {
-      if (route === "random")
-        fetch("https://api.quotable.io/random")
-          .then((res) => res.json())
-          .then((res) => {
-            setQuote({ ...res });
-          })
-          .finally(setLoading(!loading));
-      else if (route === "author")
-        fetch("https://api.quotable.io/quotes?author=" + quote.authorSlug)
-          .then((res) => res.json())
-          .then((res) => {
-            setQuotes({ ...res });
-          })
-          .finally(setLoading(!loading));
-    }
-  }, [loading]);
+    if (route === "random")
+      fetch("https://api.quotable.io/random")
+        .then((res) => res.json())
+        .then((res) => {
+          setQuote({ ...res });
+        });
+    else if (route === "author")
+      fetch("https://api.quotable.io/quotes?author=" + quote.authorSlug)
+        .then((res) => res.json())
+        .then((res) => {
+          setQuotes({ ...res });
+        });
+  }, [route]);
 
-  const handleRandom = (route) => {
-    setLoading(!loading);
-    setRoute(route);
-  };
+  console.log(quote);
 
   return (
     <div className="main">
-      <button className="button" onClick={() => handleRandom("random")}>
+      <button className="button" onClick={() => setRoute("random")}>
         <span>random</span>
         <span className="material-symbols-outlined">autorenew</span>
       </button>
       {route === "random" ? (
         <div className="random-content">
           <table>
-            <tr>
-              <th style={{ backgroundColor: "#f7df94", width: "8px" }} />
-              <th style={{ width: "100px" }} />
-              <th className="quote">{quote.content}</th>
-            </tr>
+            <tbody>
+              <tr>
+                <th style={{ backgroundColor: "#f7df94", width: "8px" }} />
+                <th style={{ width: "100px" }} />
+                <th className="quote">{quote.content}</th>
+              </tr>
+            </tbody>
           </table>
           <div className="author-container">
             <div className="wrapper">
               <div className="author">{quote.author}</div>
               <div className="tags">
-                {quote.tags?.map((item) => (
-                  <div>{item}</div>
+                {quote.tags?.map((item, index) => (
+                  <div key={index}>{item}</div>
                 ))}
               </div>
             </div>
             <span
-              class="material-symbols-outlined"
-              onClick={() => handleRandom("author")}
+              className="material-symbols-outlined"
+              onClick={() => setRoute("author")}
             >
               east
             </span>
@@ -67,11 +61,13 @@ function App() {
           <div className="title">{quote.author}</div>
           {quotes.results?.map((item, index) => (
             <table key={index}>
-              <tr>
-                <th style={{ backgroundColor: "#f7df94", width: "8px" }} />
-                <th style={{ width: "100px" }} />
-                <th className="quote">{item.content}</th>
-              </tr>
+              <tbody>
+                <tr>
+                  <th style={{ backgroundColor: "#f7df94", width: "8px" }} />
+                  <th style={{ width: "100px" }} />
+                  <th className="quote">{item.content}</th>
+                </tr>
+              </tbody>
             </table>
           ))}
         </div>
@@ -81,6 +77,10 @@ function App() {
       </div>
     </div>
   );
+}
+
+export function Body() {
+  return <div> </div>;
 }
 
 export default App;
